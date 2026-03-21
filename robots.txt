@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://simplekit.app/mortgage-calculator/sitemap.xml

@@ -1,0 +1,508 @@
+<!doctype html>
+<html lang="en-CA">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mortgage Calculator Canada | Payments, Amortization & Extra Payments | SimpleKit</title>
+  <meta
+    name="description"
+    content="Estimate mortgage payments in Canada, compare amortization, and see how extra payments, bi-weekly schedules, and lump sums can change interest cost and payoff time."
+  >
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <link rel="canonical" href="https://simplekit.app/mortgage-calculator/">
+  <meta property="og:title" content="Mortgage Calculator Canada | SimpleKit">
+  <meta
+    property="og:description"
+    content="Estimate Canadian mortgage payments, amortization, interest cost, and extra-payment impact in one view."
+  >
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://simplekit.app/mortgage-calculator/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Mortgage Calculator Canada | SimpleKit">
+  <meta
+    name="twitter:description"
+    content="Use this Canadian mortgage calculator to compare payments, amortization, and the payoff impact of extra payments."
+  >
+  <meta name="theme-color" content="#0f6abf">
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "SoftwareApplication",
+          "name": "Mortgage Calculator Canada",
+          "applicationCategory": "FinanceApplication",
+          "operatingSystem": "Web",
+          "inLanguage": "en-CA",
+          "url": "https://simplekit.app/mortgage-calculator/",
+          "description": "A Canadian mortgage calculator for estimating payments, amortization, interest cost, and extra-payment impact."
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "How do extra mortgage payments help?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Extra mortgage payments reduce principal faster, which lowers future interest charges and can shorten the payoff timeline."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What is the difference between bi-weekly and accelerated bi-weekly payments?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "A standard bi-weekly payment spreads a monthly-equivalent mortgage payment across 26 periods. An accelerated bi-weekly payment uses half of the standard monthly payment, which usually adds one extra monthly payment over the year."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Why show a mortgage term and an amortization period?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Amortization is the full payoff timeline used to calculate the required payment. The term is the shorter contract period that helps show how much balance, interest, and principal remain when renewal time arrives."
+              }
+            }
+          ]
+        }
+      ]
+    }
+  </script>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-6SS26QC3C9"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag("js", new Date());
+    gtag("config", "G-6SS26QC3C9");
+  </script>
+
+  <link rel="preconnect" href="https://core.simplekit.app">
+  <link rel="stylesheet" href="https://core.simplekit.app/core.css">
+  <link rel="stylesheet" href="./styles.css">
+  <script>
+    window.SimpleKitPage = {
+      pageType: "tool",
+      activeNavHref: "https://simplekit.app/tools/",
+      toolId: "mortgage-calculator",
+      relatedTools: [
+        "networth",
+        "fire",
+        "retirement",
+        "rrsp-tfsa"
+      ],
+      relatedToolIds: [
+        "net-worth-calculator",
+        "fire-calculator",
+        "retirement-planner",
+        "rrsp-vs-tfsa-calculator"
+      ],
+      showSupportCta: true,
+      showRelatedTools: true,
+      showFooterToolLinks: true,
+      footerNote: "Shared platform shell loaded from the SimpleKit core deployment.",
+      supportTitle: "If this mortgage tool helped, support the next one",
+      supportCopy: "Support helps SimpleKit keep building calm, practical planning tools for real-life money decisions.",
+      supportPrimaryLabel: "Support future tools",
+      supportSecondaryLabel: "Why support SimpleKit"
+    };
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#mainContent">Skip to content</a>
+
+  <div class="page-shell mortgage-shell">
+    <header class="hero hero-mortgage" aria-labelledby="pageTitle">
+      <div data-simplekit-header></div>
+      <div class="hero-copy">
+        <p class="eyebrow">SimpleKit Housing Tools</p>
+        <h1 id="pageTitle">Mortgage Calculator Canada</h1>
+        <p class="hero-subtitle">Estimate payments, amortization, and the payoff impact of extra payments for Canadian mortgage scenarios.</p>
+        <p class="hero-proof">Compare payment schedules, interest cost, and prepayment strategies before you commit to the next mortgage decision.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#calculatorSection">Start the calculator</a>
+          <a class="btn btn-secondary" href="#learnSection">How mortgage amortization works</a>
+        </div>
+        <div class="hero-trust-row" aria-label="Trust notes">
+          <span>No login</span>
+          <span>Runs in your browser</span>
+          <span>Built for quick scenario testing</span>
+        </div>
+      </div>
+
+      <aside class="hero-side">
+        <article class="hero-highlight">
+          <span class="mini-kicker">Quick answer</span>
+          <strong id="mobileHeadline">$0</strong>
+          <p>Live snapshot updates as you change payment frequency, recurring extras, or lump sums.</p>
+        </article>
+        <div id="mobileSummaryGrid" class="hero-mini-grid" aria-live="polite"></div>
+      </aside>
+    </header>
+
+    <section class="trust-strip" aria-labelledby="trustHeading">
+      <div class="strip-head">
+        <div>
+          <p class="section-kicker">Built for clarity</p>
+          <h2 id="trustHeading">A practical calculator for real mortgage decisions</h2>
+        </div>
+        <p class="muted">
+          Use it to compare payment frequencies, preview your renewal balance, and see
+          whether extra payments meaningfully change your total interest cost.
+        </p>
+      </div>
+      <div class="trust-grid">
+        <article>
+          <span class="trust-label">Baseline view</span>
+          <strong>Regular payment</strong>
+          <p>Payment amount, interest cost, and full payoff timeline.</p>
+        </article>
+        <article>
+          <span class="trust-label">Scenario view</span>
+          <strong>Extra-payment impact</strong>
+          <p>Recurring extras and lump-sum prepayments modeled side by side.</p>
+        </article>
+        <article>
+          <span class="trust-label">Renewal view</span>
+          <strong>Term-end balance</strong>
+          <p>Useful for understanding where you stand after a 1, 3, 5, or 10 year term.</p>
+        </article>
+      </div>
+    </section>
+
+    <main id="mainContent" class="page-flow">
+      <section id="headlineSummary" class="results-shell headline-shell headline-band" aria-live="polite"></section>
+
+      <section id="calculatorSection" class="panel mortgage-panel" aria-labelledby="calculatorHeading">
+        <div class="panel-header">
+          <div>
+            <p class="section-kicker">Calculator</p>
+            <h2 id="calculatorHeading">Build your mortgage scenario</h2>
+          </div>
+          <p>Start with the core numbers first. Open the extras section only if you want to test faster payoff strategies.</p>
+        </div>
+
+        <div class="calculator-layout">
+          <form id="mortgageForm" class="calculator-card no-print" novalidate>
+            <div class="form-toolbar">
+              <div>
+                <strong>Quick answer first</strong>
+                <p class="muted small-copy">Start with the four core mortgage inputs. Open the other sections only if you want to refine the scenario.</p>
+              </div>
+              <div class="toolbar-actions">
+                <button id="loadSampleBtn" class="btn btn-primary" type="button">Load sample</button>
+                <button id="resetBtn" class="btn btn-tertiary" type="button">Reset</button>
+              </div>
+            </div>
+
+            <section class="input-card">
+              <div class="input-card-head">
+                <div>
+                  <span class="step-kicker">Quick answer</span>
+                  <h3>Core mortgage inputs</h3>
+                </div>
+                <p>Use these to get your payment and payoff timeline immediately.</p>
+              </div>
+
+              <div class="segmented-control" role="radiogroup" aria-label="Mortgage input mode">
+                <label>
+                  <input type="radio" name="inputMode" value="loan">
+                  <span>I know my mortgage amount</span>
+                </label>
+                <label>
+                  <input type="radio" name="inputMode" value="purchase">
+                  <span>Calculate from price and down payment</span>
+                </label>
+              </div>
+
+              <div class="calculator-grid">
+                <label class="form-field" data-mode="loan">
+                  <span>Mortgage amount</span>
+                  <div class="input-prefix">
+                    <span>$</span>
+                    <input id="loanAmount" name="loanAmount" type="number" min="0" step="1000" inputmode="decimal">
+                  </div>
+                </label>
+
+                <label class="form-field" data-mode="purchase">
+                  <span>Home price</span>
+                  <div class="input-prefix">
+                    <span>$</span>
+                    <input id="homePrice" name="homePrice" type="number" min="0" step="1000" inputmode="decimal">
+                  </div>
+                </label>
+
+                <label class="form-field" data-mode="purchase">
+                  <span>Down payment</span>
+                  <div class="input-prefix">
+                    <span>$</span>
+                    <input id="downPayment" name="downPayment" type="number" min="0" step="1000" inputmode="decimal">
+                  </div>
+                  <small id="downPaymentMeta">Enter a home price to derive the mortgage amount.</small>
+                </label>
+
+                <div class="derived-card" data-mode="purchase">
+                  <span class="metric-label">Derived mortgage amount</span>
+                  <strong id="derivedMortgageAmount">$0</strong>
+                  <p>This becomes the mortgage principal used in the calculations.</p>
+                </div>
+
+                <label class="form-field core-field">
+                  <span>Interest rate</span>
+                  <div class="input-suffix">
+                    <input id="annualRate" name="annualRate" type="number" min="0" step="0.01" inputmode="decimal">
+                    <span>%</span>
+                  </div>
+                </label>
+
+                <label class="form-field core-field">
+                  <span>Amortization period</span>
+                  <input id="amortizationYears" name="amortizationYears" type="number" min="1" max="40" step="1" inputmode="numeric">
+                  <small>Enter the remaining amortization in whole years.</small>
+                </label>
+
+                <label class="form-field">
+                  <span>Mortgage term</span>
+                  <select id="termYears" name="termYears">
+                    <option value="1">1 year</option>
+                    <option value="2">2 years</option>
+                    <option value="3">3 years</option>
+                    <option value="5">5 years</option>
+                    <option value="10">10 years</option>
+                  </select>
+                </label>
+
+                <label class="form-field core-field">
+                  <span>Payment frequency</span>
+                  <select id="paymentFrequency" name="paymentFrequency">
+                    <option value="monthly">Monthly</option>
+                    <option value="semimonthly">Semi-monthly</option>
+                    <option value="biweekly">Bi-weekly</option>
+                    <option value="accelerated-biweekly">Accelerated bi-weekly</option>
+                    <option value="weekly">Weekly</option>
+                    <option value="accelerated-weekly">Accelerated weekly</option>
+                  </select>
+                </label>
+              </div>
+            </section>
+
+            <details class="input-card" data-animated-collapse>
+              <summary>
+                <span>Improve your payoff</span>
+                <span class="summary-note">Optional extra payments</span>
+              </summary>
+              <div class="collapsible-body">
+              <div class="option-stack">
+                <section class="mini-option-card">
+                  <div>
+                    <h3>Add a little to every payment</h3>
+                    <p class="muted small-copy">Useful when you want to see whether a small recurring extra makes a meaningful difference.</p>
+                  </div>
+                  <label class="form-field">
+                    <span>Extra amount added to each payment</span>
+                    <div class="input-prefix">
+                      <span>$</span>
+                      <input id="extraPerPayment" name="extraPerPayment" type="number" min="0" step="25" inputmode="decimal">
+                    </div>
+                  </label>
+                </section>
+
+                <section class="mini-option-card">
+                  <div class="subsection-head">
+                    <div>
+                      <h3>Plan one-time prepayments</h3>
+                      <p class="muted small-copy">Model larger one-off payments by amount and month from the mortgage start date.</p>
+                    </div>
+                    <button class="btn btn-tertiary" type="button" data-add-lump>Add another lump sum</button>
+                  </div>
+                  <div id="lumpSumRows" class="lump-grid"></div>
+                </section>
+              </div>
+              </div>
+            </details>
+
+            <details class="input-card" data-animated-collapse>
+              <summary>
+                <span>Refine assumptions</span>
+                <span class="summary-note">Optional deeper settings</span>
+              </summary>
+              <div class="collapsible-body">
+              <div class="calculator-grid">
+                <label class="form-field">
+                  <span>Mortgage start date</span>
+                  <input id="startDate" name="startDate" type="date">
+                </label>
+
+                <label class="form-field">
+                  <span>How interest is compounded</span>
+                  <select id="compounding" name="compounding">
+                    <option value="semi-annual">Semi-annual</option>
+                    <option value="monthly">Monthly</option>
+                    <option value="annual">Annual</option>
+                  </select>
+                </label>
+
+                <label class="form-field">
+                  <span>Lender prepayment limit</span>
+                  <div class="input-suffix">
+                    <input id="prepaymentCapPercent" name="prepaymentCapPercent" type="number" min="0" step="0.1" inputmode="decimal">
+                    <span>%</span>
+                  </div>
+                  <small>Use `0` to leave the cap off. Common lender caps are often 10% to 20% of the original principal each mortgage year.</small>
+                </label>
+
+                <label class="form-field">
+                  <span>If you invested instead</span>
+                  <div class="input-suffix">
+                    <input id="investingReturn" name="investingReturn" type="number" min="0" step="0.1" inputmode="decimal">
+                    <span>%</span>
+                  </div>
+                  <small>Used in the mortgage-versus-investing handoff section below.</small>
+                </label>
+              </div>
+              </div>
+            </details>
+          </form>
+
+          <div class="results-stack">
+            <section id="resultsStatus" class="results-status" aria-live="polite"></section>
+            <details class="results-shell results-disclosure" data-animated-collapse open>
+              <summary>See the mortgage breakdown</summary>
+              <div class="collapsible-body">
+                <section id="baselineCards" aria-live="polite"></section>
+                <section id="extrasCards" aria-live="polite"></section>
+                <section id="comparisonCards" aria-live="polite"></section>
+              </div>
+            </details>
+            <section id="frequencyImpactCard" class="results-shell"></section>
+            <section class="results-shell actions-shell no-print">
+              <div class="results-block-head">
+                <div>
+                  <p class="section-kicker">Actions</p>
+                  <h3>Save or share this scenario</h3>
+                </div>
+                <p>Use these after you are happy with the result.</p>
+              </div>
+              <div class="form-actions">
+                <button id="shareBtn" class="btn btn-secondary-panel" type="button">Copy share link</button>
+                <button id="printBtn" class="btn btn-secondary-panel" type="button">Print summary</button>
+              </div>
+              <p id="shareFeedback" class="muted small-copy" aria-live="polite"></p>
+            </section>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel charts-panel" aria-labelledby="chartsHeading">
+        <div class="panel-header">
+          <div>
+            <p class="section-kicker">Visuals</p>
+            <h2 id="chartsHeading">See the payoff curve, not just the totals</h2>
+          </div>
+          <p>These charts make it easier to see how principal falls over time and how interest changes when you pay faster.</p>
+        </div>
+        <div class="charts-grid">
+          <div id="balanceChart"></div>
+          <div id="breakdownChart"></div>
+        </div>
+      </section>
+
+      <section class="panel amortization-panel" aria-labelledby="amortizationHeading">
+        <div class="panel-header">
+          <div>
+            <p class="section-kicker">Amortization</p>
+            <h2 id="amortizationHeading">Yearly summary and payment-level detail</h2>
+          </div>
+          <div class="panel-side-actions">
+            <p>Start with the yearly summary for readability, then open the payment-level table if you want a deeper audit trail.</p>
+            <div class="toolbar-actions no-print">
+              <button id="exportYearlyCsvBtn" class="btn btn-tertiary" type="button">Export yearly CSV</button>
+              <button id="exportPaymentCsvBtn" class="btn btn-tertiary" type="button">Export payment CSV</button>
+            </div>
+          </div>
+        </div>
+        <div id="yearlySummaryTable"></div>
+        <div id="paymentDetailTable"></div>
+      </section>
+
+      <section class="panel frequency-panel" aria-labelledby="frequencyHeading">
+        <div class="panel-header">
+          <div>
+            <p class="section-kicker">Compare frequencies</p>
+            <h2 id="frequencyHeading">How each payment cadence changes the shape of the mortgage</h2>
+          </div>
+          <p>Most people only need one quick insight first. Open the full comparison only if you want to compare every schedule side by side.</p>
+        </div>
+        <details class="detail-disclosure">
+          <summary>Compare all payment schedules</summary>
+          <div id="frequencyComparison"></div>
+        </details>
+      </section>
+
+      <section class="panel crossover-panel" aria-labelledby="crossoverHeading">
+        <div class="panel-header">
+          <div>
+            <p class="section-kicker">Next question</p>
+            <h2 id="crossoverHeading">Pay down faster or invest instead?</h2>
+          </div>
+          <p>This is an optional planning handoff once you already like the mortgage scenario above.</p>
+        </div>
+        <details class="detail-disclosure">
+          <summary>Open the mortgage-versus-investing handoff</summary>
+          <div id="crossoverSection"></div>
+        </details>
+      </section>
+
+      <section id="learnSection" class="panel learn-panel" aria-labelledby="learnHeading">
+        <div class="panel-header">
+          <div>
+            <p class="section-kicker">Learn</p>
+            <h2 id="learnHeading">Helpful mortgage notes in plain English</h2>
+          </div>
+          <p>Use these notes as a quick guide when you are deciding whether to change frequency, add extras, or focus on your next term renewal.</p>
+        </div>
+        <div class="learn-grid">
+          <article class="learn-card">
+            <h3>What amortization really means</h3>
+            <p>The amortization period is the full payoff timeline used to calculate your required payment. It is not the same as your mortgage term. A 25-year amortization with a 5-year term still leaves a balance to renew after year five.</p>
+          </article>
+          <article class="learn-card">
+            <h3>Why payment frequency matters</h3>
+            <p>Changing frequency can affect how often principal gets reduced. Accelerated weekly and accelerated bi-weekly schedules usually help the most because they effectively add the equivalent of one extra monthly payment each year.</p>
+          </article>
+          <article class="learn-card">
+            <h3>Why extra payments have leverage</h3>
+            <p>Mortgage interest is charged on the remaining balance. When you reduce principal earlier, every later interest calculation starts from a smaller number. That is why even small recurring extras can save meaningful interest over time.</p>
+          </article>
+          <article class="learn-card">
+            <h3>How lump sums help</h3>
+            <p>A lump-sum prepayment creates a one-time jump downward in your balance. That can be especially helpful near the start of the mortgage, when a larger share of each regular payment is still going toward interest.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="panel methodology-panel" aria-labelledby="methodHeading">
+        <div class="panel-header">
+          <div>
+            <p class="section-kicker">Methodology</p>
+            <h2 id="methodHeading">Assumptions used in this calculator</h2>
+          </div>
+          <p>Mortgage conventions vary between lenders, so this section makes the modeling choices visible instead of hiding them.</p>
+        </div>
+        <div id="methodologyCallout" class="method-callout"></div>
+        <ul id="assumptionsList" class="assumptions-list"></ul>
+      </section>
+
+      <div id="relatedToolsSection" data-simplekit-related-tools></div>
+      <div data-simplekit-support></div>
+      <div data-simplekit-footer></div>
+    </main>
+  </div>
+
+  <script type="module" src="https://core.simplekit.app/core.js"></script>
+  <script src="./calculator.js" defer></script>
+  <script src="./charts.js" defer></script>
+  <script src="./app.js" defer></script>
+</body>
+</html>
