@@ -108,13 +108,18 @@
       supportSecondaryLabel: "Why support SimpleKit"
     };
   </script>
+<link rel="stylesheet" href="https://core.simplekit.app/v2/foundations.css">
+<link rel="stylesheet" href="https://core.simplekit.app/v2/system.css">
+<link rel="stylesheet" href="https://core.simplekit.app/v2/pilot.css">
 </head>
-<body>
-  <a class="skip-link" href="#mainContent">Skip to content</a>
+<body class="sk-v2" data-v2-system="1" data-v2-pilot="mortgage">
+<a class="v2s-skip v2-button" href="#mainContent">Skip to content</a><header class="v2s-header"><div class="v2s-wrap v2s-header-inner"><a class="v2s-brand" href="/" aria-label="SimpleKit home"><svg aria-hidden="true" focusable="false"><use href="https://core.simplekit.app/v2/icons/sprite.svg#calculator"></use></svg>SimpleKit</a><button type="button" class="v2s-menu" data-v2s-menu aria-controls="pilot-mortgage-nav" aria-expanded="false" hidden>Menu</button><nav class="v2s-nav" id="pilot-mortgage-nav" aria-label="Main navigation"><a href="/">Home</a><a href="/tools/" aria-current="page">Tools</a><a href="/learn/">Learn</a><a href="/about/">About</a><a href="/support/">Support</a></nav></div></header>
+<script src="https://core.simplekit.app/v2/shell.js"></script>
+  
 
   <div class="page-shell mortgage-shell">
     <header class="hero hero-mortgage" aria-labelledby="pageTitle">
-      <div data-simplekit-header></div>
+      
       <div class="hero-copy">
         <p class="eyebrow">SimpleKit Housing Tools</p>
         <h1 id="pageTitle">Mortgage Calculator Canada</h1>
@@ -171,7 +176,7 @@
       </div>
     </section>
 
-    <main id="mainContent" class="page-flow">
+    <main id="mainContent" tabindex="-1" class="page-flow">
       <section id="headlineSummary" class="results-shell headline-shell headline-band" aria-live="polite"></section>
 
       <section id="calculatorSection" class="panel mortgage-panel" aria-labelledby="calculatorHeading">
@@ -535,7 +540,7 @@
       </section>
 
       <div data-simplekit-support></div>
-      <div data-simplekit-footer></div>
+      <footer class="v2s-footer"><div class="v2s-wrap v2s-footer-inner"><div class="v2s-stack"><strong>SimpleKit</strong><p class="v2s-help">Free planning tools with clearer next steps.</p></div><div class="v2s-stack"><nav aria-label="Footer navigation"><a href="/tools/">Tools</a><a href="/learn/">Learn</a><a href="/methodology/">Methodology &amp; sources</a><a href="/privacy/">Privacy</a><a href="/support/">Support</a></nav><p class="v2s-help">Estimates for planning, not financial advice. Financial inputs stay in your browser; existing site analytics are described in our privacy policy.</p></div></div></footer>
     </main>
   </div>
 
@@ -543,5 +548,6 @@
   <script src="./calculator.js" defer></script>
   <script src="./charts.js" defer></script>
   <script src="./app.js" defer></script>
+<script src="https://core.simplekit.app/v2/pilot.js"></script>
 </body>
 </html>
